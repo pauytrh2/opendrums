@@ -1,9 +1,8 @@
 name: Cross-build Rust project
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  release:
+    types: [published]
 
 jobs:
   build:
