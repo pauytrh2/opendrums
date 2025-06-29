@@ -1,16 +1,7 @@
 use opencv::{Result, core, highgui, imgproc, prelude::*, videoio};
-use std::{
-    io::{self, Write},
-    process::Command,
-};
+use std::io::{self, Write};
 
-fn clear_terminal() {
-    if cfg!(target_os = "windows") {
-        Command::new("cmd").args(&["/C", "cls"]).status().unwrap();
-    } else {
-        Command::new("clear").status().unwrap();
-    }
-}
+mod utils;
 
 fn main() -> Result<()> {
     let mut available_cams = Vec::new();
@@ -26,7 +17,7 @@ fn main() -> Result<()> {
         panic!("No cameras detected!");
     }
 
-    clear_terminal();
+    utils::clear_terminal();
 
     println!("Available camera indices:");
     for cam_index in &available_cams {
