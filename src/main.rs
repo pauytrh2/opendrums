@@ -21,7 +21,7 @@ fn main() -> Result<()> {
 
     println!("Available camera indices:");
     for cam_index in &available_cams {
-        println!("  - Camera at index {}", cam_index);
+        println!("  - Camera at index {cam_index}");
     }
 
     print!("Please enter the camera index you want to use: ");
@@ -35,13 +35,13 @@ fn main() -> Result<()> {
         .expect("Invalid input, expected a number");
 
     if !available_cams.contains(&cam_index) {
-        panic!("Selected camera index {} is not available", cam_index);
+        panic!("Selected camera index {cam_index} is not available");
     }
 
     let mut cam = videoio::VideoCapture::new(cam_index, videoio::CAP_ANY)?;
 
     if !videoio::VideoCapture::is_opened(&cam)? {
-        panic!("Unable to open camera at index {}", cam_index);
+        panic!("Unable to open camera at index {cam_index}");
     }
 
     highgui::named_window("Camera - Light Objects", highgui::WINDOW_AUTOSIZE)?;
